@@ -3,9 +3,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const MONGODB_CLUSTER = process.env.MONGODB_CLUSTER;
+
+const getMongoUri = () => {
+  return `${MONGODB_URI}`;
+};
 
 export default {
-  MONGODB_URI,
-  MONGODB_CLUSTER,
+  getMongoUri,
 };
