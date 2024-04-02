@@ -9,6 +9,7 @@ import globals from "./util/globalVariables.js";
 // Router imports
 import loginRouter from "./routes/applicantRouter.js";
 import applicantRouter from "./routes/applicantRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 // Create an instance of application
 const app = express();
@@ -24,15 +25,9 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Test route Hello, world!
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
-});
-
-const unknownEndpoint = (req, res) => {
-  res.status(404).send({ error: "unknown endpoint" });
-};
-
-app.use(unknownEndpoint);
+// app.get("/", (req, res) => {
+//   res.send("Hello, world!");
+// });
 
 mongoose.connect(globals.getMongoUri());
 // .then(() => {
@@ -46,7 +41,15 @@ mongoose.connect(globals.getMongoUri());
 //   console.error("Error connecting to MongoDB:", error);
 // });
 
+// Routers middleware here
 app.use("/api/applicant", applicantRouter);
+app.use("/api/user", userRouter);
+
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
+};
+
+app.use(unknownEndpoint);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

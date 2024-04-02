@@ -8,7 +8,7 @@ const registerApplicant = async (req, res) => {
       res.status(201).send("Applicant registration route complete.");
     })
     .catch((err) => {
-      res.status(400).send("Unable to save Applicant's data.");
+      res.status(400).send("Unable to save Applicant's data.", err);
     });
 };
 
