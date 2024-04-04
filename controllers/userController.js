@@ -32,7 +32,7 @@ const loginUser = async (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      if (err.status === 400) {
+      if (err.status === 400 || err.status === 401 || err.status === 404) {
         res.status(err.status).json({
           message: err.message,
           field: err.field,

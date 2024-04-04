@@ -78,9 +78,9 @@ const loginUser = async (userData) => {
     }
   } catch (err) {
     if (err.message === "userNotFoundError") {
-      throw { status: 404, message: "User not found" };
+      throw { status: 404, field: "username", message: "User not found" };
     } else if (err.message === "invalidPasswordError") {
-      throw { status: 401, message: "Invalid password" };
+      throw { status: 401, field: "username", message: "Invalid password" };
     } else {
       throw {
         status: 500,
