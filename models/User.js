@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 5,
     maxlength: 36,
-    require: true,
+    required: true,
     unique: true,
     validate: {
       validator: modelValidations.isUser,
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 6,
     maxlength: 255,
-    require: true,
+    required: true,
     unique: true,
     validate: {
       validator: modelValidations.isEmail,

@@ -3,8 +3,9 @@ import bcrypt from "bcrypt";
 import globalVariables from "./globalVariables.js";
 
 const hashData = async (data) => {
+  const saltRounds = 10;
   return bcrypt
-    .hash(globalVariables.getPassPhrase(), 10)
+    .hash(data, saltRounds)
     .then((hash) => {
       return hash;
     })
@@ -15,9 +16,9 @@ const hashData = async (data) => {
     });
 };
 
-const decryptHashData = async (hashData) => {
+const decryptHashData = async (plainPassword, hashPassword) => {
   return bcrypt
-    .compare(globalVariables.getPassPhrase(), hashData)
+    .compare(plainPassword, hashPassword)
     .then((result) => {
       return result;
     })

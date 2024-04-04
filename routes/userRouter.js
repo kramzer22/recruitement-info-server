@@ -10,4 +10,6 @@ userRouter.get("/", (req, res) => {
 
 userRouter.post("/register", userController.registerUser);
 
+userRouter.post("/login", userController.loginUser);
+
 export default userRouter;
