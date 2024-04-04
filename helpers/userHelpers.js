@@ -33,7 +33,7 @@ const registerUser = async (userData) => {
 
     console.log("User's data registration successful.\n", user);
   } catch (err) {
-    console.log("Unable to save user\n", err);
+    console.log("Unable to save user");
 
     await session.abortTransaction();
     session.endSession();

@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
-// Define a custom validation function
-const isAlphabetic = (value) => {
-  const cleanValue = value.replace(/\s{2,}/g, " ").toLowerCase();
-  return /^[a-zA-Z\s]+$/.test(cleanValue);
-};
+import modelValidations from "../util/modelValidations.js";
 
 const applicantSchema = new mongoose.Schema({
   name: {
@@ -14,7 +10,7 @@ const applicantSchema = new mongoose.Schema({
       maxlength: 50,
       require: true,
       validate: {
-        validator: isAlphabetic,
+        validator: modelValidations.isAlphabet,
         message: "Firstname must only contain alphabetic characters.",
       },
     },
@@ -24,7 +20,7 @@ const applicantSchema = new mongoose.Schema({
       maxlength: 50,
       require: true,
       validate: {
-        validator: isAlphabetic,
+        validator: modelValidations.isAlphabet,
         message: "Middlename must only contain alphabetic characters.",
       },
     },
@@ -34,7 +30,7 @@ const applicantSchema = new mongoose.Schema({
       maxlength: 50,
       require: true,
       validate: {
-        validator: isAlphabetic,
+        validator: modelValidations.isAlphabet,
         message: "Lastname must only contain alphabetic characters.",
       },
     },
