@@ -3,11 +3,12 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import bodyparser from "body-parser";
+import jwt from "jsonwebtoken";
 
 import globals from "./util/globalVariables.js";
 
 // Router imports
-import loginRouter from "./routes/applicantRouter.js";
+import loginRouter from "./routes/loginRouter.js";
 import applicantRouter from "./routes/applicantRouter.js";
 import userRouter from "./routes/userRouter.js";
 
@@ -44,6 +45,7 @@ mongoose.connect(globals.getMongoUri());
 // Routers middleware here
 app.use("/api/applicant", applicantRouter);
 app.use("/api/user", userRouter);
+app.use("/login", loginRouter);
 
 const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: "unknown endpoint" });
